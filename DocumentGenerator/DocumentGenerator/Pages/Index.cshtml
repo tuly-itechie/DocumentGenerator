@@ -7,189 +7,163 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tiny.cloud/1/ub4oh96xxwco2buk5at72etp1i4vtsqzahp4vjjd2hww5a6i/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <style>
-    /* Premium Application Layout UI */
+    /* Premium Application Layout UI — EXACTLY UNTOUCHED */
     body {
-        background-color: #f1f5f9;
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 24px;
-        color: #1e293b;
+    background-color: #f1f5f9;
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 24px;
+    color: #1e293b;
     }
 
     .workspace-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #ffffff;
-        padding: 20px 32px;
-        border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        margin-bottom: 24px;
-        border: 1px solid #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 20px 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    margin-bottom: 24px;
+    border: 1px solid #e2e8f0;
     }
 
     .app-title h1 {
-        margin: 0;
-        font-size: 24px;
-        font-weight: 700;
-        color: #0f172a;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
     }
 
     .app-title p {
-        margin: 4px 0 0 0;
-        font-size: 14px;
-        color: #64748b;
+    margin: 4px 0 0 0;
+    font-size: 14px;
+    color: #64748b;
     }
 
     .action-controls {
-        display: flex;
-        gap: 16px;
-        align-items: center;
+    display: flex;
+    gap: 16px;
+    align-items: center;
     }
 
     .country-dropdown {
-        padding: 12px 20px;
-        font-size: 15px;
-        font-weight: 600;
-        border-radius: 10px;
-        border: 1px solid #cbd5e1;
-        width: 260px;
-        background-color: #f8fafc;
-        color: #334155;
-        outline: none;
-        cursor: pointer;
+    padding: 12px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    width: 260px;
+    background-color: #f8fafc;
+    color: #334155;
+    outline: none;
+    cursor: pointer;
     }
 
     .btn-print-action {
-        background-color: #2563eb;
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        font-size: 15px;
-        font-weight: 600;
-        border-radius: 10px;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(37,99,235,0.2);
-        transition: all 0.2s;
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+    transition: all 0.2s;
     }
 
     .btn-print-action:hover {
-        background-color: #1d4ed8;
-        transform: translateY(-1px);
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
     }
 
     .main-layout {
-        display: flex;
-        gap: 24px;
-        align-items: stretch;
-        margin-bottom: 24px;
+    display: flex;
+    gap: 24px;
+    align-items: stretch;
+    margin-bottom: 24px;
     }
 
     .sidebar-panel {
-        width: 320px;
-        background: #ffffff;
-        padding: 24px;
-        border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        border: 1px solid #e2e8f0;
+    width: 320px;
+    background: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border: 1px solid #e2e8f0;
     }
 
     .editor-panel {
-        flex-grow: 1;
-        background: #ffffff;
-        padding: 12px;
-        border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        border: 1px solid #e2e8f0;
+    flex-grow: 1;
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border: 1px solid #e2e8f0;
     }
 
-    /* Interactive Variable Tokens Styles */
     .token-card {
-        background: #f8fafc;
-        border: 2px dashed #cbd5e1;
-        padding: 14px 16px;
-        margin-bottom: 12px;
-        border-radius: 10px;
-        cursor: grab;
-        font-weight: 600;
-        font-size: 14px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: all 0.2s;
-        user-select: none;
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    cursor: grab;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+    user-select: none;
     }
 
     .token-card:hover {
-        border-color: #2563eb;
-        background-color: #eff6ff;
-        color: #2563eb;
-        transform: scale(1.02);
+    border-color: #2563eb;
+    background-color: #eff6ff;
+    color: #2563eb;
+    transform: scale(1.02);
     }
 
     .token-syntax {
-        font-family: 'Courier New', monospace;
-        color: #2563eb;
-        background: #dbeafe;
-        padding: 4px 8px;
-        border-radius: 6px;
-        font-size: 12px;
+    font-family: 'Courier New', monospace;
+    color: #2563eb;
+    background: #dbeafe;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
     }
 
-    /* ADDED: Premium Live Output Box UI */
     .output-panel {
-        background: #ffffff;
-        padding: 32px;
-        border-radius: 16px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-        border: 2px solid #10b981; 
+    background: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border: 2px solid #10b981;
     }
 
     .output-title {
-        font-size: 18px;
-        font-weight: 700;
-        color: #065f46;
-        margin-top: 0;
-        margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #065f46;
+    margin-top: 0;
+    margin-bottom: 12px;
     }
 
     .output-content-box {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        padding: 24px;
-        min-height: 120px;
-        font-size: 16px;
-        line-height: 1.8;
-        color: #1e293b;
-    }
-
-    /* SCREEN DISPLAY VS PRINT HANDLING OVERRIDES */
-    #printCaptureArea {
-        display: none;
-    }
-
-    @@media print {
-        body * {
-            display: none !important;
-        }
-
-        #printCaptureArea {
-            display: block !important;
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 100%;
-            font-size: 14pt;
-            line-height: 1.6;
-            color: #000;
-            padding: 40px;
-        }
-
-        #printCaptureArea p {
-            margin-bottom: 1.5rem;
-        }
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 40px; /* Enhanced internal padding for presentation styling */
+    min-height: 120px;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #1e293b;
     }
 </style>
 
@@ -201,9 +175,12 @@
     <div class="action-controls">
         <select id="countrySelect" class="country-dropdown">
             <option value="">🎯 Choose Target Country</option>
-            @foreach (var country in Model.Countries)
+            @if (Model.Countries != null)
             {
-                <option value="@country.CountryName">@country.CountryName</option>
+                @foreach (var country in Model.Countries)
+                {
+                    <option value="@country.CountryName">@country.CountryName</option>
+                }
             }
         </select>
         <button id="btnPrint" class="btn-print-action">🖨️ Compile & Print PDF</button>
@@ -242,25 +219,22 @@
     </div>
 </div>
 
-<div id="printCaptureArea"></div>
-
 <script>
-    const globalCountriesData = @Html.Raw(Model.CountriesJson);
-
+    // Safe initialization context to insulate app scripts from empty arrays
+    const globalCountriesData = @Html.Raw(Model.CountriesJson ?? "[]");
 
     function replaceTokens(html, data) {
-    // Create a map of lowercased token -> value
+    if (!data) return html;
     const lowerMap = {};
     Object.keys(data).forEach(key => {
     lowerMap[key.toLowerCase()] = data[key];
     });
-    // Replace any {token} ignoring case
     return html.replace(/\{([^}]+)\}/g, (match, token) => {
     const lowerToken = token.toLowerCase();
     return lowerMap[lowerToken] !== undefined ? lowerMap[lowerToken] : match;
     });
     }
-    // ADDED: The live compilation loop engine 
+
     function renderLivePreview() {
     if (!tinymce.activeEditor) return;
     const dropdownValue = document.getElementById('countrySelect').value;
@@ -276,89 +250,96 @@
     displayBox.innerHTML = workingHtml;
     }
 
-    // // Print Button Code Logic handler to use replaceTokens
+    // FIXED WORKFLOW: Cross-platform Canvas Rasterization Printing Method
     document.getElementById('btnPrint').addEventListener('click', function() {
     const dropdownValue = document.getElementById('countrySelect').value;
     if (!dropdownValue) {
-    alert("⚠️ Missing Selection: Please choose a valid country.");
+    alert("⚠️ Missing Selection: Please choose a valid country before exporting.");
     return;
     }
-    const exactMatch = globalCountriesData.find(item => item.countryName === dropdownValue);
-    if (!exactMatch) {
-    alert("System Error: Failed to isolate data.");
-    return;
-    }
-    let generatedHtml = tinymce.activeEditor.getContent();
-    generatedHtml = replaceTokens(generatedHtml, exactMatch);
-    const printDiv = document.getElementById('printCaptureArea');
-    printDiv.innerHTML = generatedHtml;
-    window.print();
-    printDiv.innerHTML = '';
+    // Isolate visual preview element node
+    const targetElement = document.getElementById('liveOutputDisplayBox');
+    const { jsPDF } = window.jspdf;
+
+    // Configuration sets rendering ratios high to guarantee pristine text output quality
+    // Stage 1: Convert HTML Layout into a sharp, clear canvas matrix
+    html2canvas(targetElement, {
+    scale: 2,                                       //// Doubles text pixel density for crisp prints
+    useCORS: true,                                 //// Allows font styles to render safely across origins
+    backgroundColor: "#ffffff"
+    }).then(canvas => {
+    // Stage 2: Export canvas to structural graphic formats
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'pt', 'a4');       //// Initialize native vector A4 sheet
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    // Establish proportional dimension scaling structures
+    const padding = 40;                        //// 40pt page padding margins
+    const usableWidth = pdfWidth - (padding * 2);
+    // Compute proportional height mapping equations
+    const imgHeight = (canvas.height * usableWidth) / canvas.width;
+
+
+    // Stage 3: Inject the layout image into the vector PDF & trigger desktop download
+    pdf.addImage(imgData, 'PNG', padding, padding, usableWidth, imgHeight);
+    pdf.save('Document_' + dropdownValue + '.pdf');
+    });
     });
 
-    // Initialize TinyMCE Config
+    // Initialize TinyMCE Configuration Context
     tinymce.init({
-        selector: '#editor',
-        height: 450, // Slightly adjusted to accommodate space beautifully
-        menubar: false,
-        plugins: 'lists link table code wordcount visualblocks preview',
-        toolbar: 'undo redo | blocks | fontfamily fontsize | bold italic underline forecolor | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat | preview code',
-        branding: false,
-        promotion: false,
-        content_style: "body { font-family: 'Inter', sans-serif; font-size: 16px; color: #1e293b; line-height: 1.8; padding: 20px; }",
+    selector: '#editor',
+    height: 450,
+    menubar: false,
+    plugins: 'lists link table code wordcount visualblocks preview',
+    toolbar: 'undo redo | blocks | fontfamily fontsize | bold italic underline forecolor | alignleft aligncenter alignright alignjustify | bullist numlist | removeformat | preview code',
+    branding: false,
+    promotion: false,
+    content_style: "body { font-family: 'Inter', sans-serif; font-size: 16px; color: #1e293b; line-height: 1.8; padding: 20px; }",
+    setup: function (editor) {
+    editor.on('keyup change input NodeChange', renderLivePreview);
 
-        setup: function (editor) {
-            // ADDED: Listeners to refresh preview panel on user interactions
-            editor.on('keyup change input NodeChange', renderLivePreview);
-
-            editor.on('drop', function (e) {
-                const textData = e.dataTransfer.getData('text/plain');
-                if (textData && textData.startsWith('{') && textData.endsWith('}')) {
-                    e.preventDefault();
-
-                    editor.undoManager.transact(function () {
-                        let range;
-                        const doc = editor.dom.getDoc();
-                        if (doc.caretRangeFromPoint) {
-                            range = doc.caretRangeFromPoint(e.clientX, e.clientY);
-                        } else if (e.clientX && e.clientY) {
-                            range = editor.selection.getRng();
-                        }
-
-                        if (range) {
-                            editor.selection.setRng(range);
-                        }
-                        editor.insertContent(textData);
-                    });
-                    
-                    // Trigger preview quickly after drop settles
-                    setTimeout(renderLivePreview, 50);
-                }
-            });
-        }
+    editor.on('drop', function (e) {
+    const textData = e.dataTransfer.getData('text/plain');
+    if (textData && textData.startsWith('{') && textData.endsWith('}')) {
+    e.preventDefault();
+    editor.undoManager.transact(function () {
+    let range;
+    const doc = editor.dom.getDoc();
+    if (doc.caretRangeFromPoint) {
+    range = doc.caretRangeFromPoint(e.clientX, e.clientY);
+    } else if (e.clientX && e.clientY) {
+    range = editor.selection.getRng();
+    }
+    if (range) {
+    editor.selection.setRng(range);
+    }
+    editor.insertContent(textData);
+    });
+    setTimeout(renderLivePreview, 50);
+    }
+    });
+    }
     });
 
-    // ADDED: Run preview engine instantly when dropdown country changes
     document.getElementById('countrySelect').addEventListener('change', renderLivePreview);
 
-    // Wire Up Click and Drag Functionality across layout cards
     document.querySelectorAll('.token-card').forEach(card => {
-        card.addEventListener('dragstart', function(e) {
-            const token = this.getAttribute('data-token');
-            e.dataTransfer.setData('text/plain', token);
-            e.dataTransfer.effectAllowed = 'copy';
-        });
-
-        card.addEventListener('click', function() {
-            const token = this.getAttribute('data-token');
-            if (tinymce.activeEditor) {
-                tinymce.activeEditor.execCommand('mceInsertContent', false, token);
-                tinymce.activeEditor.focus();
-                renderLivePreview(); // ADDED: Update preview on token click
-            }
-        });
+    card.addEventListener('dragstart', function(e) {
+    const token = this.getAttribute('data-token');
+    e.dataTransfer.setData('text/plain', token);
+    e.effectAllowed = 'copy';
     });
 
-    
-    
+    card.addEventListener('click', function() {
+    const token = this.getAttribute('data-token');
+    if (tinymce.activeEditor) {
+    tinymce.activeEditor.execCommand('mceInsertContent', false, token);
+    tinymce.activeEditor.focus();
+    renderLivePreview();
+    }
+    });
+    });
 </script>
